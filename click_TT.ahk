@@ -1,5 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
-global freq := 5000
+global freq := 1000
+global lazy := 1000
 global toggle := False 
 F9:: {
   global toggle := !toggle
@@ -11,9 +12,49 @@ F9:: {
 
   clik() {
    CoordMode 'Mouse'
-   Click 1800, 730
-   sleep 1000
-   Click 1570, 830
+  
+  ; Money
+   ; Click 1700, 900  ; panel
+   ; sleep lazy
+   ; Click 1600, 670  ; cash bonus
+   ; sleep lazy
+   ; Click 1600, 760  ; coins/kill
+   ; sleep lazy
+  
+  ; Protection
+   ; Click 1600, 900  ; panel
+   ; sleep lazy
+   Click 1800, 760  ; Defense Absolute
+   sleep lazy
+   ; Click 1600, 850  ; Thorn
+   ; sleep lazy
+
+   ; Attack
+   ; Click 1450, 900  ; panel
+   ; sleep lazy
+   ; Click 1800, 660  ; attack speed
+   ; sleep lazy
+   ; Click 1550, 660  ; damage
+   ; sleep lazy
+
+   ; check gem ad
+   CoordMode "Pixel"
+   if (PixelSearch(&_, &_, 1466, 445, 1480, 445, 0xFFFFFF, 3))
+   {
+    ; MsgBox "This is a string."
+	  Click 1466, 455
+    sleep 40000
+    send "{Esc}"
+    sleep lazy
+    send "{Esc}"
+    sleep lazy
+    Click 1700, 800
+    sleep lazy
+  }
+  else
+  {
+    sleep lazy
+  }
   }
 }
   
