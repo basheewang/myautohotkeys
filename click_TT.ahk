@@ -22,26 +22,27 @@ F9:: {
    ; sleep lazy
   
   ; Protection
-   ; Click 1600, 900  ; panel
-   ; sleep lazy
+   Click 1600, 900  ; panel
+   sleep lazy
    Click 1800, 760  ; Defense Absolute
    sleep lazy
    ; Click 1600, 850  ; Thorn
    ; sleep lazy
 
    ; Attack
-   ; Click 1450, 900  ; panel
-   ; sleep lazy
+   Click 1450, 900  ; panel
+   sleep lazy
    ; Click 1800, 660  ; attack speed
    ; sleep lazy
-   ; Click 1550, 660  ; damage
-   ; sleep lazy
+   Click 1550, 660  ; damage
+   sleep lazy
 
    ; check gem ad
    CoordMode "Pixel"
-   if (PixelSearch(&_, &_, 1466, 445, 1480, 445, 0xFFFFFF, 3))
+   if (PixelSearch(&_, &_, 1466, 445, 1480, 445, 0xFFFFFF, 0))
    {
     ; MsgBox "This is a string."
+    sleep lazy
 	  Click 1466, 455
     sleep 40000
     send "{Esc}"
@@ -53,6 +54,12 @@ F9:: {
   }
   else
   {
+    ; MsgBox "Not Found!"
+    ; sleep lazy
+    ; if WinExist("click_TT.ahk")
+    ;   WinActivate
+    ;   sleep lazy
+    ;   send "{Esc}"
     sleep lazy
   }
   }
