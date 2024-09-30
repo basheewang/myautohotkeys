@@ -13,9 +13,9 @@ F9:: {
   clik() {
    CoordMode 'Mouse'
   
-  ; Money
-   ; Click 1700, 900  ; panel
-   ; sleep lazy
+  ; utility
+   Click 1700, 900  ; panel
+   sleep lazy
    ; Click 1600, 670  ; cash bonus
    ; sleep lazy
    ; Click 1800, 670  ; cash per wave
@@ -30,10 +30,10 @@ F9:: {
    ; sleep lazy
    ; Click 1600, 630  ; Free utility upgrade
    ; sleep lazy
-   ; Click 1600, 730  ; Recovery Amount
-   ; sleep lazy
-   ; Click 1800, 730  ; Max Recovery
-   ; sleep lazy
+   Click 1600, 730  ; Recovery Amount
+   sleep lazy
+   Click 1800, 730  ; Max Recovery
+   sleep lazy
    ; Click 1600, 830  ; Package Chance
    ; sleep lazy
    ; send "{WheelUp}"
@@ -46,7 +46,7 @@ F9:: {
    sleep lazy
    Click 1600, 650  ; Health
    sleep lazy
-   Click 1800, 750  ; Defense Absolute
+   ; Click 1800, 750  ; Defense Absolute
    ; sleep lazy
    ; Click 1600, 750  ; Defense %
    ; sleep lazy
@@ -82,6 +82,8 @@ F9:: {
    ; sleep lazy
    ; Click 1600, 850  ; Range
    ; sleep lazy
+   ; Click 1800, 850  ; Damage/Meter
+   ; sleep lazy
    ; send "{WheelDown}"
    ; sleep lazy
    ; Click 1600, 650  ; Rapid Fire Chance
@@ -99,11 +101,34 @@ F9:: {
    ; send "{WheelUp}"
    ; sleep lazy
 
-   ; Retry
+   ; Restart the game if ended
+   CoordMode "Pixel"
+   if (PixelSearch(&_, &_, 1430, 400, 1500, 500, 0x141335,0))
+   {
+     Click 1600, 700
+     sleep lazy
+   }
+   else
+   {
+     sleep lazy
+   }
+
+   ; Check Lab status
+   CoordMode "Pixel"
+   if (PixelSearch(&_, &_, 1833, 45, 1836, 48, 0x7D77D9,0))
+   {
+     SoundBeep 550, 1500
+     ; MsgBox "Hi"
+     sleep lazy
+   }
+   else
+   {
+     sleep lazy
+   }
    ; CoordMode "Pixel"
-   ; if (PixelSearch(&_, &_, 1430, 400, 1500, 500, 0x141335,0))
+   ; if (PixelSearch(&_, &_, 1833, 45, 1836, 48, 0x8CD977,0))
    ; {
-   ;   Click 1600, 700
+   ;   SoundBeep 523, 500
    ;   sleep lazy
    ; }
    ; else
@@ -112,32 +137,32 @@ F9:: {
    ; }
 
    ; check gem ad
-  ;  CoordMode "Pixel"
-  ;  if (PixelSearch(&_, &_, 1466, 445, 1480, 445, 0xFFFFFF, 0))
-  ;  {
-  ;   ; MsgBox "This is a string."
-  ;   sleep lazy
-	 ;  Click 1466, 455
-  ;   sleep 40000
-  ;   send "{Esc}"
-  ;   sleep lazy * 2
-  ;   Click 1860, 60
-  ;   sleep lazy * 3
-  ;   ; send "{Esc}"
-  ;   ; sleep lazy * 3
-  ;   Click 1700, 800
-  ;   sleep lazy
-  ; }
-  ; else
-  ; {
-  ;   ; MsgBox "Not Found!"
-  ;   ; sleep lazy
-  ;   ; if WinExist("click_TT.ahk")
-  ;   ;   WinActivate
-  ;   ;   sleep lazy
-  ;   ;   send "{Esc}"
-  ;   sleep lazy
-  ; }
+   CoordMode "Pixel"
+   if (PixelSearch(&_, &_, 1466, 445, 1480, 445, 0xFFFFFF, 0))
+   {
+    ; MsgBox "This is a string."
+    sleep lazy
+	  Click 1466, 455
+    sleep 40000
+    send "{Esc}"
+    sleep lazy * 2
+    Click 1860, 60
+    sleep lazy * 3
+    ; send "{Esc}"
+    ; sleep lazy * 3
+    Click 1700, 800
+    sleep lazy
+  }
+  else
+  {
+    ; MsgBox "Not Found!"
+    ; sleep lazy
+    ; if WinExist("click_TT.ahk")
+    ;   WinActivate
+    ;   sleep lazy
+    ;   send "{Esc}"
+    sleep lazy
+  }
   }
 }
   
